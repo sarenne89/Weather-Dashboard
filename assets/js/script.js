@@ -1,27 +1,43 @@
 $(document).ready(function() {
     dayjs.extend(window.dayjs_plugin_customParseFormat)
-    const APIKey = "aefc3d833526ac11a10cd57951b4969d";
-    const searchButton = $("#search-button");
-    let todaysDate = dayjs().format("(DD/MM/YYYY)");
-    const today = $("#today");
-    const forecast = $("#forecast");
+    const APIKey = "aefc3d833526ac11a10cd57951b4969d"
+    const searchButton = $("#search-button")
+    let todaysDate = dayjs().format("(DD/MM/YYYY)")
+    const today = $("#today")
+    const forecast = $("#forecast")
 
     // Function to find weather data for searched city on click
     searchButton.on("click", function() {
         event.preventDefault();
+        //removes any previous weather data before searchng for new data
         today.empty();
         forecast.empty();
         today.removeClass("clearSky", "fewClouds", "scatteredClouds", "brokenClouds", "showerRain", "rain", "thunderstorm", "snow", "mist")
         let citySearch = $("#search-input").val()
         let geoQueryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + APIKey;
+
+        //creates a button to add to the search history, giving it the class "previous-search"
+        if (citySearch === "") {
+            alert("Please search for a city!")
+        }
+        else {
         previousSearch = $("<button>").val(citySearch).text(citySearch).attr({
             class: "btn btn-primary my-2 previous-search",
             type: "submit",
             })
+        }
         $(".weather-hr").after(previousSearch)
+        //function for searching with previous searches
+        previousSearchButtons = $(".previous-search")
+        previousSearchButtons.on("click", function() {
+            event.preventDefault()
+            console.log("Hello there!")
+        })
+
+        //fetches lat/long data for the searched city, and shows the user an error if the search is invalid
         fetch(geoQueryURL)
         .then(function(response) {
-        return response.json();
+        return response.json()
         })
         .then(function(data) {
             if (data[0] === undefined) {
@@ -30,11 +46,13 @@ $(document).ready(function() {
             lonVar = data[0].lon
             latVar = data[0].lat
         })
+
+        //uses the lat/long data from the initial fetch request to search for the appropriate weather data
         .then(function(){
             let weatherQueryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + latVar + "&lon=" + lonVar + "&appid=" + APIKey;
             fetch(weatherQueryURL)
             .then(function(response) {
-                return response.json();
+                return response.json()
             }).then(function(data) {
 
                 //adds data to the div showing current weather conditions in the chosen City
@@ -106,7 +124,6 @@ $(document).ready(function() {
                     }
                 }
             })
-        });
-    });
-    previousSearchButton = $(".previoius-search")
+        })
+    })
 })
