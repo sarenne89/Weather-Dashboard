@@ -13,7 +13,7 @@ $(document).ready(function() {
         today.empty();
         forecast.empty();
         let citySearch = $("#search-input").val()
-        let geoQueryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + APIKey;
+        let geoQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + APIKey;
 
         //creates a button to add to the search history, giving it the class "previous-search"
         if (citySearch === "") {
