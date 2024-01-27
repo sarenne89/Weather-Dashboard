@@ -33,7 +33,7 @@ $(document).ready(function() {
             today.empty();
             forecast.empty();
             let previousCity = $(this).val()
-            let geoQueryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + previousCity + "&limit=5&appid=" + APIKey;
+            let geoQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + previousCity + "&limit=5&appid=" + APIKey;
             fetch(geoQueryURL)
             .then(function(response) {
             return response.json()
