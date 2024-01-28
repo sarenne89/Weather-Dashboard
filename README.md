@@ -12,8 +12,8 @@ Visit https://sarenne89.github.io/Weather-Dashboard in your browser.
 
 ## Usage
 
-![Screenshot of the dashboard](assets/images/Screenshot1.png)
-![Screenshot demostrating local storage saves, and that only the 5 most recent searches are shown on page refresh.](assets/images/Screenshot2.png)
+![Screenshot of the dashboard](assets/img/Screenshot1.png)
+![Screenshot demostrating local storage saves, and that only the 5 most recent searches are shown on page refresh.](assets/img/Screenshot2.png)
 
 ## Credits
 
