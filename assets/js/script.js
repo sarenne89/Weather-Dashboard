@@ -71,11 +71,14 @@ $(document).ready(function() {
                 if (data.weather[0].description === "scattered clouds") {
                     today.attr("class", "mt-3 p-2 scatteredClouds")
                 }
-                if (data.weather[0].description === "shower rain") {
+                if (data.weather[0].description === "shower rain" || "light rain") {
                     today.attr("class", "mt-3 p-2 showerRain")
                 }
-                if (data.weather[0].description === "broken clouds" || "overcast clouds") {
+                if (data.weather[0].description === "broken clouds") {
                     today.attr("class", "mt-3 p-2 rain")
+                }
+                if (data.weather[0].description === "overcast clouds") {
+                    today.attr("class", "mt-3 p-2 overcast")
                 }
                 if (data.weather[0].description === "thunderstorm") {
                     today.attr("class", "mt-3 p-2 thunderstorm")
@@ -94,10 +97,9 @@ $(document).ready(function() {
             .then(function(response) {
                 return response.json();
             }).then(function(data2){
-                console.log(data2)
                 for (let index = 0; index < data2.list.length; index++) {
                     if (data2.list[index].dt_txt.includes("12:00:00")){
-                        forecastCard = $("<div>").addClass("card col-12 col-md-2 mx-md-auto mx-2 my-2 bg-dark text-light")
+                        forecastCard = $("<div>").addClass("card col-12 col-md-2 mx-auto my-2 bg-dark text-light")
                         forecastDate = $("<h5>").text(dayjs.unix(data2.list[index].dt).format("DD-MM-YYYY"))
                         forecastDate.addClass("text-center")
                         forecastTime = $("<p>").text("@12pm").attr("class", "mb-2 text-center")
@@ -186,10 +188,10 @@ $(document).ready(function() {
                     if (data.weather[0].description === "scattered clouds") {
                         today.attr("class", "mt-3 p-2 scatteredClouds")
                     }
-                    if (data.weather[0].description === "shower rain") {
+                    if (data.weather[0].description === "shower rain" || "light rain") {
                         today.attr("class", "mt-3 p-2 showerRain")
                     }
-                    if (data.weather[0].description === "broken clouds" || "overcast clouds") {
+                    if (data.weather[0].description === "broken clouds") {
                         today.attr("class", "mt-3 p-2 rain")
                     }
                     if (data.weather[0].description === "thunderstorm") {
@@ -200,6 +202,9 @@ $(document).ready(function() {
                     }
                     if (data.weather[0].description === "mist") {
                         today.attr("class", "mt-3 p-2 mist")
+                    }
+                    if (data.weather[0].description === "overcast clouds") {
+                        today.attr("class", "mt-3 p-2 overcast")
                     }            
                 })
             })
