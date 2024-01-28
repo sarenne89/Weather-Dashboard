@@ -6,16 +6,18 @@ $(document).ready(function() {
     const today = $("#today")
     const forecast = $("#forecast")
 
-//Function definition for retrieving previous search history from local storage and creating buttons for 5 most recent searches
+//Function definition for retrieving previous search history from local storage and creating buttons for up to 5 most recent searches
     function showHistory() {
         let retrievedHistory = localStorage.getItem("searchHistory")?
         JSON.parse(localStorage.getItem("searchHistory")) : []
         for (let i = 0; i < 5; i++) {
-            previousSearch = $("<button>").val(retrievedHistory[i]).text(retrievedHistory[i]).attr({
-                class: "btn btn-primary my-2 previous-search",
-                type: "submit",
-                })
-            $(".list-group").append(previousSearch)
+            if (retrievedHistory[i] != null){
+                previousSearch = $("<button>").val(retrievedHistory[i]).text(retrievedHistory[i]).attr({
+                    class: "btn btn-primary my-2 previous-search",
+                    type: "submit",
+                    })
+                $(".list-group").append(previousSearch)
+            }
         }
     }
 
