@@ -94,6 +94,7 @@ $(document).ready(function() {
             .then(function(response) {
                 return response.json();
             }).then(function(data2){
+                console.log(data2)
                 for (let index = 0; index < data2.list.length; index++) {
                     if (data2.list[index].dt_txt.includes("12:00:00")){
                         forecastCard = $("<div>").addClass("card col-12 col-md-2 mx-md-auto mx-2 my-2 bg-dark text-light")
@@ -125,6 +126,7 @@ $(document).ready(function() {
         //Removes any previous weather data before searchng for new data
         today.empty();
         forecast.empty();
+        today.attr("class", "")
         let citySearch = $("#search-input").val()
         let retrievedHistory = localStorage.getItem("searchHistory")?
         JSON.parse(localStorage.getItem("searchHistory")) : []
