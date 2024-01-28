@@ -128,9 +128,7 @@ $(document).ready(function() {
         forecast.empty();
         today.attr("class", "")
         let citySearch = $("#search-input").val()
-        let retrievedHistory = localStorage.getItem("searchHistory")?
-        JSON.parse(localStorage.getItem("searchHistory")) : []
-        retrievedHistory.unshift(citySearch)
+
         localStorage.setItem("searchHistory", JSON.stringify(retrievedHistory))
         let geoQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + citySearch + "&limit=5&appid=" + APIKey;
 
@@ -143,6 +141,9 @@ $(document).ready(function() {
             class: "btn btn-primary my-2 previous-search",
             type: "submit",
             })
+            let retrievedHistory = localStorage.getItem("searchHistory")?
+            JSON.parse(localStorage.getItem("searchHistory")) : []
+            retrievedHistory.unshift(citySearch)
         }
         $(".list-group").append(previousSearch)
         //Fetches lat/long data for the searched city, and shows the user an error if the search is invalid
