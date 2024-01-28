@@ -25,7 +25,7 @@ $(document).ready(function() {
             type: "submit",
             })
         }
-        $(".weather-hr").after(previousSearch)
+        $(".list-group").append(previousSearch)
         //function for searching with previous search
         previousSearchButtons = $(".previous-search")
         previousSearchButtons.on("click", function() {
