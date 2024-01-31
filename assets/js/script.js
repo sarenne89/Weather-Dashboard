@@ -88,7 +88,7 @@ $(document).ready(function () {
             if (data.weather[0].description === "scattered clouds") {
               today.attr("class", "mt-3 p-2 scatteredClouds");
             }
-            if (data.weather[0].description === "shower rain") {
+            if (data.weather[0].description === "shower rain" || "light rain") {
               today.attr("class", "mt-3 p-2 showerRain");
             }
             if (data.weather[0].description === "broken clouds") {
@@ -234,6 +234,7 @@ $(document).ready(function () {
             today.append(windSpeed);
             humidity = $("<h5>").text("Humidity: " + data.main.humidity + "%");
             today.append(humidity);
+            console.log(data);
 
             //Adds a class with a background image depending on current weather conditions
             if (data.weather[0].description === "clear sky") {
@@ -245,7 +246,7 @@ $(document).ready(function () {
             if (data.weather[0].description === "scattered clouds") {
               today.attr("class", "mt-3 p-2 scatteredClouds");
             }
-            if (data.weather[0].description === "shower rain") {
+            if (data.weather[0].description === "shower rain" || "light rain") {
               today.attr("class", "mt-3 p-2 showerRain");
             }
             if (data.weather[0].description === "broken clouds") {
